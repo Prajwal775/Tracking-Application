@@ -3,15 +3,16 @@ package com.trackingapplication.service;
 import com.trackingapplication.entity.Tag;
 import com.trackingapplication.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class TagServiceImpl implements TagService{
 
-    private final TagRepository tagRepository;
+    @Autowired
+    private TagRepository tagRepository;
 
     @Override
     public Tag createTag(Tag tag) {
@@ -39,7 +40,7 @@ public class TagServiceImpl implements TagService{
         Tag existingTag=tagRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
         //updating the details;
-        existingTag.setSerial_no(updatedTag.getSerial_no());
+//        existingTag.setSerial_no(updatedTag.getSerial_no());
         existingTag.setMac_address(updatedTag.getMac_address());
         existingTag.setTagtype(updatedTag.getTagtype());
 

@@ -4,22 +4,19 @@ import com.trackingapplication.entity.Tag;
 import com.trackingapplication.repository.TagRepository;
 import com.trackingapplication.service.TagService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/tag")
 public class TagController {
 
-    private final TagRepository tagRepository;
-    private final TagService tagService;
-
+    @Autowired
+    private TagService tagService;
     @PostMapping("/create")
     public ResponseEntity<Tag> createTag(@RequestBody Tag tag)
     {
@@ -38,8 +35,27 @@ public class TagController {
      return ResponseEntity.ok(listOfAllTags);
     }
 
-//    @GetMapping("/{id}")
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Tag> getById(@PathVariable long id){
+        Tag tag=tagService.getTagById(id);
+        return ResponseEntity.ok(tag);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable long id)
+    {
+        tagService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Tag>updateById(@PathVariable long id,@RequestBody Tag updatedTag)
+    {
+        Tag utag=tagService.updateTag(id,updatedTag);
+        return ResponseEntity.ok(utag);
+    }
 
 
 }
