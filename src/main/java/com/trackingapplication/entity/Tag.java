@@ -3,50 +3,29 @@ package com.trackingapplication.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "tag")
-public class Tag extends BaseEntity{
+@Data
+@Table(name = "tags",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "mac_address"),
+        @UniqueConstraint(columnNames = "serial_no")
+})
+public class Tag extends BaseEntity<Long> implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long serial_no;
+    private Long id;
+    private long lost_remark;
+    private String bluetooth;
+    @Column(name = "mac_address",unique = true,nullable = false)
     private String mac_address;
-
+    @Column(name = "serial_no",unique = true,nullable = false)
+    private String serial_no;
+    private String manufacturer_name;
+    private String model;
+    private String status;
+    private String vendor_contact;
+    private String vendor_name;
+    private String assigned_status;
     private Tagtype tagtype;
-
-    public long getSerial_no() {
-        return serial_no;
-    }
-
-    public void setSerial_no(long serial_no) {
-        this.serial_no = serial_no;
-    }
-
-    public String getMac_address() {
-        return mac_address;
-    }
-
-    public void setMac_address(String mac_address) {
-        this.mac_address = mac_address;
-    }
-
-    public Tagtype getTagtype() {
-        return tagtype;
-    }
-
-    public void setTagtype(Tagtype tagtype) {
-        this.tagtype = tagtype;
-    }
-
-    @Override
-    public String toString() {
-        return "Tag{" +
-                "serial_no=" + serial_no +
-                ", mac_address='" + mac_address + '\'' +
-                ", tagtype=" + tagtype +
-                '}';
-    }
 }

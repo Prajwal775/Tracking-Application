@@ -44,10 +44,10 @@ public class TagController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable long id)
+    public ResponseEntity<String> deleteById(@PathVariable long id)
     {
         tagService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("deleted id with"+ id);
     }
 
     @PutMapping("/{id}")

@@ -9,7 +9,7 @@ public interface TagService {
     Tag createTag(Tag tag);
     Tag getTagById(Long id);
     List<Tag> getAll();
-    void deleteById(Long id);
+    String deleteById(Long id);
     Tag updateTag(Long id,Tag tag);
 
 }
