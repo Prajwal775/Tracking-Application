@@ -1,15 +1,17 @@
 package com.trackingapplication.service;
 
+import com.trackingapplication.dto.TagDTO;
 import com.trackingapplication.entity.Tag;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface TagService {
-
-    Tag createTag(Tag tag);
-    Tag getTagById(Long id);
-    List<Tag> getAll();
-    String deleteById(Long id);
-    Tag updateTag(Long id,Tag tag);
+//
+    TagDTO createTag(TagDTO tagDTO);
+    TagDTO getTagById(Long id);
+    List<TagDTO> getAll();
+    ResponseEntity<String> deleteById(Long id);
+    TagDTO updateTag(Long id,TagDTO tagDTO);
 
 }

@@ -1,5 +1,6 @@
 package com.trackingapplication.controller;
 
+import com.trackingapplication.dto.TagDTO;
 import com.trackingapplication.entity.Tag;
 import com.trackingapplication.repository.TagRepository;
 import com.trackingapplication.service.TagService;
@@ -18,44 +19,39 @@ public class TagController {
     @Autowired
     private TagService tagService;
     @PostMapping("/create")
-    public ResponseEntity<Tag> createTag(@RequestBody Tag tag)
+    public ResponseEntity<TagDTO> createTag(@RequestBody TagDTO tagDTO)
     {
-        Tag createdTag=tagService.createTag(tag);
+        TagDTO createdTag=tagService.createTag(tagDTO);
         return new ResponseEntity<>(createdTag, HttpStatus.CREATED);
     }
 
-//    @GetMapping("/getAll")
-//    public List<Tag> getAll(){
-//        return tagService.getAll();
-//    }
-
     @GetMapping("/getAll")
-    public ResponseEntity<List<Tag>> getAll(){
-     List<Tag> listOfAllTags=tagService.getAll();
+    public ResponseEntity<List<TagDTO>> getAll(){
+     List<TagDTO> listOfAllTags=tagService.getAll();
      return ResponseEntity.ok(listOfAllTags);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tag> getById(@PathVariable long id){
-        Tag tag=tagService.getTagById(id);
-        return ResponseEntity.ok(tag);
+    public ResponseEntity<TagDTO> getById(@PathVariable long id){
+        TagDTO tagDTO=tagService.getTagById(id);
+        return ResponseEntity.ok(tagDTO);
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable long id)
     {
-        tagService.deleteById(id);
-        return ResponseEntity.ok("deleted id with"+ id);
+        return tagService.deleteById(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tag>updateById(@PathVariable long id,@RequestBody Tag updatedTag)
+    public ResponseEntity<TagDTO>updateById(@PathVariable long id,@RequestBody TagDTO updatedTagDto)
     {
-        Tag utag=tagService.updateTag(id,updatedTag);
-        return ResponseEntity.ok(utag);
+        TagDTO updatedTag=tagService.updateTag(id,updatedTagDto);
+        return ResponseEntity.ok(updatedTag);
     }
+
 
 
 }

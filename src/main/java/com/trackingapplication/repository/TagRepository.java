@@ -9,14 +9,11 @@ import java.util.Optional;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag,Long> {
-    boolean existsByMacAddress(String macAddress);
-
-    boolean existsBySerialNo(String serialNo);
-
+    boolean existsByMacAddressOrSerialNo(String macAddress, String serialNo);
     //all tags which are not deleted
-    List<Tag> findAllByIdIsDeletedFalse();
+//    List<Tag> findAllByIdIsDeletedFalse();
 
     //find by id but only if is not deleted
-    Optional<Tag> findByIdAndIsDeletedFalse(Long id);
+//    Optional<Tag> findByIdAndIsDeletedFalse(Long id);
 //
 }
