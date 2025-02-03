@@ -13,10 +13,10 @@ public class TagDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //@Column(name = "mac_address",unique = true,nullable = false)
-    private String mac_address;
-    //@Column(name = "serial_no",unique = true,nullable = false)
-    private String serial_no;
+    @Column(name = "mac_address",unique = true)
+    private String macAddress;
+    @Column(name = "serial_no",unique = true)
+    private String serialNo;
     private String status;
     private String assigned_status;
     private String lost_remark;

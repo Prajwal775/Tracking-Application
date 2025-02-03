@@ -16,9 +16,9 @@ public class Tag extends BaseEntity<Long> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lost_remark;
-    @Column(name = "mac_address",unique = true,nullable = false)
+    @Column(name = "mac_address",unique = true)
     private String macAddress;
-    @Column(name = "serial_no",unique = true,nullable = false)
+    @Column(name = "serial_no",unique = true)
     private String serialNo;
     private String status;
     private String assigned_status;

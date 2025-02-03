@@ -4,7 +4,6 @@ import com.trackingapplication.dto.TagDTO;
 import com.trackingapplication.entity.Tag;
 import com.trackingapplication.exception.CustomException;
 import com.trackingapplication.repository.TagRepository;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public class TagServiceImpl implements TagService{
 
     @Override
     public TagDTO createTag(TagDTO tagDTO) {
-        if(tagRepository.existsByMacAddressOrSerialNo(tagDTO.getMac_address(), tagDTO.getSerial_no())){
+        if(tagRepository.existsByMacAddressOrSerialNo(tagDTO.getMacAddress(), tagDTO.getSerialNo())){
             throw new CustomException("Device with this Mac Address or Serial Numnber Already exists.");
         }
 
